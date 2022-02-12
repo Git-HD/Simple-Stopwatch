@@ -11,6 +11,13 @@ document.getElementById('toggle').addEventListener('click', () => {
     } else {
         toggle = !toggle
         clearInterval(int);
+        
+        let h = hours < 10 ? "0" + hours : hours;
+        let m = minutes < 10 ? "0" + minutes : minutes;
+        let s = seconds < 10 ? "0" + seconds : seconds;
+        let ms = millisseconds < 10  ? "00" + millisseconds : millisseconds < 100 ? "0" + millisseconds : millisseconds;
+        navigator.clipboard.writeText(` ${h} : ${m} : ${s} : ${ms}`);
+        
         [millisseconds, seconds, minutes, hours] = [0, 0, 0, 0];
         display.innerHTML = '00 : 00 : 00 : 000';
     }
